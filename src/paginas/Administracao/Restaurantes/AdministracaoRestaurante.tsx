@@ -12,13 +12,14 @@ import {
 } from "@mui/material";
 import axios from "axios";
 import { Link } from "react-router-dom";
+import http from "../../../http";
 
 const AdministracaoRestaurantes = () => {
   const [restaurantes, setRestaurantes] = useState<Array<IRestaurante>>([]);
 
   useEffect(() => {
-    axios
-      .get<Array<IRestaurante>>("http://localhost:8000/api/v2/restaurantes/")
+    http
+      .get<Array<IRestaurante>>("restaurantes/")
       .then((response) => {
         setRestaurantes(response.data);
       })
@@ -28,14 +29,12 @@ const AdministracaoRestaurantes = () => {
   }, []);
 
   const deletaRestaurante = (restaurante: IRestaurante) => {
-    axios
-      .delete(`http://localhost:8000/api/v2/restaurantes/${restaurante.id}/`)
-      .then(() => {
-        const novaListaRestaurante = restaurantes.filter((rest) => {
-          return rest.id !== restaurante.id;
-        });
-        setRestaurantes([...novaListaRestaurante]);
+    http.delete(`restaurantes/${restaurante.id}/`).then(() => {
+      const novaListaRestaurante = restaurantes.filter((rest) => {
+        return rest.id !== restaurante.id;
       });
+      setRestaurantes([...novaListaRestaurante]);
+    });
   };
 
   return (
