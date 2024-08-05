@@ -10,7 +10,6 @@ import {
   TableHead,
   TableRow,
 } from "@mui/material";
-import axios from "axios";
 import { Link } from "react-router-dom";
 import http from "../../../http";
 
@@ -38,42 +37,44 @@ const AdministracaoRestaurantes = () => {
   };
 
   return (
-    <TableContainer component={Paper}>
-      <Table>
-        <TableHead>
-          <TableRow>
-            <TableCell>Nome</TableCell>
-            <TableCell>Editar</TableCell>
-            <TableCell>Deletar</TableCell>
-          </TableRow>
-        </TableHead>
-        <TableBody>
-          {restaurantes?.map((restaurante) => {
-            return (
-              <TableRow key={restaurante.id}>
-                <TableCell>{restaurante.nome}</TableCell>
-                <TableCell>
-                  [
-                  <Link to={`/admin/restaurantes/${restaurante.id}`}>
-                    Editar
-                  </Link>
-                  ]
-                </TableCell>
-                <TableCell>
-                  <Button
-                    color="error"
-                    variant="outlined"
-                    onClick={() => deletaRestaurante(restaurante)}
-                  >
-                    deletar
-                  </Button>
-                </TableCell>
-              </TableRow>
-            );
-          })}
-        </TableBody>
-      </Table>
-    </TableContainer>
+    <>
+      <TableContainer component={Paper}>
+        <Table>
+          <TableHead>
+            <TableRow>
+              <TableCell>Nome</TableCell>
+              <TableCell>Editar</TableCell>
+              <TableCell>Deletar</TableCell>
+            </TableRow>
+          </TableHead>
+          <TableBody>
+            {restaurantes?.map((restaurante) => {
+              return (
+                <TableRow key={restaurante.id}>
+                  <TableCell>{restaurante.nome}</TableCell>
+                  <TableCell>
+                    [
+                    <Link to={`/admin/restaurantes/${restaurante.id}`}>
+                      Editar
+                    </Link>
+                    ]
+                  </TableCell>
+                  <TableCell>
+                    <Button
+                      color="error"
+                      variant="outlined"
+                      onClick={() => deletaRestaurante(restaurante)}
+                    >
+                      deletar
+                    </Button>
+                  </TableCell>
+                </TableRow>
+              );
+            })}
+          </TableBody>
+        </Table>
+      </TableContainer>
+    </>
   );
 };
 

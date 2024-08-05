@@ -1,4 +1,11 @@
-import { Box, Button, TextField, Typography } from "@mui/material";
+import {
+  Box,
+  Button,
+  Container,
+  Paper,
+  TextField,
+  Typography,
+} from "@mui/material";
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import IRestaurante from "../../../interfaces/IRestaurante";
@@ -45,34 +52,45 @@ const FormularioRestaurante = () => {
     }
   };
   return (
-    <Box
-      sx={{
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "center",
-      }}
-    >
-      <Typography component="h1" variant="h6">
-        Formulário de Restaurantes
-      </Typography>
-      <Box component="form" onSubmit={aoSubmeterForm}>
-        <TextField
-          required
-          onChange={(evento) => setNomeRestaurante(evento.target.value)}
-          value={nomeRestaurante}
-          label="Nome do restaurante"
-          variant="standard"
-          fullWidth
-        />
-        <Button
-          sx={{ marginTop: 1 }}
-          fullWidth
-          type="submit"
-          variant="outlined"
-        >
-          Salvar
-        </Button>
-      </Box>
+    <Box>
+      <Container maxWidth="lg" sx={{ mt: 1 }}>
+        <Paper sx={{ p: 2 }}>
+          <Box
+            sx={{
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+              flexGrow: 1,
+            }}
+          >
+            <Typography component="h1" variant="h6">
+              Formulário de Restaurantes
+            </Typography>
+            <Box
+              component="form"
+              sx={{ width: "100%" }}
+              onSubmit={aoSubmeterForm}
+            >
+              <TextField
+                required
+                onChange={(evento) => setNomeRestaurante(evento.target.value)}
+                value={nomeRestaurante}
+                label="Nome do restaurante"
+                variant="standard"
+                fullWidth
+              />
+              <Button
+                sx={{ marginTop: 1 }}
+                fullWidth
+                type="submit"
+                variant="outlined"
+              >
+                Salvar
+              </Button>
+            </Box>
+          </Box>
+        </Paper>
+      </Container>
     </Box>
   );
 };
